@@ -101,15 +101,40 @@
           <!-- Date -->
           <span class="date-time info">On
             <span class="date">2017-03-11</span>
-            <span class="time">14:24:40</span>
+            <span class="time">08:55:08</span>
           </span>
           
         </div>
         <!-- Tags -->
         
+          <div class="post-tags text-muted">
+            Tags: 
+
+<a class="tag" href="/tags/TV1-0/">#TV1.0</a>
+
+
+          </div>
+        
         <!-- Post Main Content -->
         <div class="post-content">
-          
+          <h2 id="学习Bootstrap-3-0栅格系统的使用，学会如何进行排版"><a href="#学习Bootstrap-3-0栅格系统的使用，学会如何进行排版" class="headerlink" title="学习Bootstrap 3.0栅格系统的使用，学会如何进行排版"></a>学习Bootstrap 3.0栅格系统的使用，学会如何进行排版</h2><h3 id="css的问题"><a href="#css的问题" class="headerlink" title="css的问题"></a>css的问题</h3><ul>
+<li><code>float:left</code>是什么意思？ 就是左右对齐的意思，有三个属性值 <code>left|right|none</code></li>
+<li>栅格嵌套的css</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">[class *= col-]&#123;</div><div class="line">  background-color: #eee;</div><div class="line">  border: 1px solid #ccc;</div><div class="line">&#125;</div><div class="line">[class *= col-] [class *= col-] &#123;</div><div class="line">  background-color: #f92;</div><div class="line">  border:1px dashed #fff;</div><div class="line">  color: #1ff;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>列偏移是通过 <code>col-md-offset-*</code> 实现，内部css通过<code>margin-left</code>实现</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">.col-md-offset-12 &#123;</div><div class="line"> margin-left: 100%;</div><div class="line">&#125;</div><div class="line">.col-md-offset-11 &#123;</div><div class="line">  margin-left: 91.66666667%;</div><div class="line">&#125;</div><div class="line">.col-md-offset-10 &#123;</div><div class="line">  margin-left: 83.33333333%;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>列排序是通过 <code>col-md-push-*</code> (右移)和<code>col-md-pull-*</code> (左移)实现，内部css通过right和left实现：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">.col-md-pull-12 &#123;</div><div class="line">    right: 100%;</div><div class="line">  &#125;</div><div class="line">  .col-md-pull-11 &#123;</div><div class="line">    right: 91.66666667%;</div><div class="line">  &#125;</div><div class="line">  .col-md-pull-10 &#123;</div><div class="line">    right: 83.33333333%;</div><div class="line">  &#125;</div><div class="line">  .col-md-pull-9 &#123;</div><div class="line">    right: 75%;</div><div class="line">  &#125;</div><div class="line">    .col-md-push-12 &#123;</div><div class="line">    left: 100%;</div><div class="line">  &#125;</div><div class="line">  .col-md-push-11 &#123;</div><div class="line">    left: 91.66666667%;</div><div class="line">  &#125;</div><div class="line">  .col-md-push-10 &#123;</div><div class="line">    left: 83.33333333%;</div><div class="line">  &#125;</div></pre></td></tr></table></figure>
+<h2 id="学习Bootstrap部分JS组件，如时间选择器，表格翻页的使用"><a href="#学习Bootstrap部分JS组件，如时间选择器，表格翻页的使用" class="headerlink" title="学习Bootstrap部分JS组件，如时间选择器，表格翻页的使用"></a>学习Bootstrap部分JS组件，如时间选择器，表格翻页的使用</h2><h3 id="时间选择器"><a href="#时间选择器" class="headerlink" title="时间选择器"></a>时间选择器</h3><ul>
+<li>官方网站<a href="http://www.bootcss.com/p/bootstrap-datetimepicker/index.htm" target="_blank" rel="external">http://www.bootcss.com/p/bootstrap-datetimepicker/index.htm</a></li>
+<li>小博客<a href="http://www.imooc.com/article/14042" target="_blank" rel="external">http://www.imooc.com/article/14042</a></li>
+</ul>
+
         </div>
       </div>
     </div>

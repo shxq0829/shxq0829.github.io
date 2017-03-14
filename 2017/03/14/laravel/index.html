@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="沙晓强">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="laravel学习"/>
+  <meta property="og:description" content="blog" />
+  <meta property="og:site_name" content="sky_bird&#39;s blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://shaxiaoqiang.comundefined"/>
+  
+    <link rel="alternate" href="/atom.xml" title="sky_bird&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>sky_bird's blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">laravel学习</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/levblanc">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:levblanc@163.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By 沙晓强</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-03-14</span>
+            <span class="time">10:38:46</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="Laravel基础"><a href="#Laravel基础" class="headerlink" title="Laravel基础"></a>Laravel基础</h2><h3 id="Laravel目录结构"><a href="#Laravel目录结构" class="headerlink" title="Laravel目录结构"></a>Laravel目录结构</h3><ul>
+<li>app：应用程序的核心代码,controller在里面，model也在里面</li>
+<li>bootstrap：启动代码</li>
+<li>config：配置文件 cache，database</li>
+<li>public：入口以及项目的静态资源文件（图片，js，css）</li>
+<li>resources：视图View在这里面</li>
+<li>storage：编译后的文件。views中有编译后的文件。</li>
+<li>tests：单元测试代码。</li>
+<li>vendor：依赖模块。</li>
+</ul>
+<p>访问的时候localhost:8080/laravel/public/ 这是入口文件默认index.php</p>
+<h3 id="路由route"><a href="#路由route" class="headerlink" title="路由route"></a>路由route</h3><ul>
+<li>概念：路由是将用户的请求转发给相应的程序进行处理，建立URL和程序之间的映射</li>
+<li>分类：基础路由<code>post|get|put</code>、多请求路由<code>match|any</code>、</li>
+<li>路由参数：where是条件的意思。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Route::get(&apos;user/&#123;id&#125;/&#123;name?&#125;&apos;,function($id, $name = &apos;kitty&apos;)&#123;</div><div class="line">	return &apos;USERNAME-&apos;.$name.&apos;USERID-&apos; . $id;</div><div class="line">&#125;)-&gt;where([&apos;id&apos; =&gt; &apos;[0-9]&apos;, name&apos; =&gt; [A-Za-z]+]);	//name可由多个字母组成</div></pre></td></tr></table></figure>
+<ul>
+<li>路由别名：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Route::get(&apos;user/member-center&apos;, [&apos;as&apos; =&gt; &apos;center&apos;, function()&#123;</div><div class="line">	return &apos;member-center&apos;;</div><div class="line">&#125;]);</div></pre></td></tr></table></figure>
+<ul>
+<li>路由群组：访问时需要在URL上加入前缀member。用于隔离前面重名的路由名称。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Route::group([&apos;prefix&apos; =&gt; &apos;member&apos;], function()&#123;</div><div class="line">	Route::get(&apos;user/member-center&apos;, [&apos;as&apos; =&gt; &apos;center&apos;, function()&#123;</div><div class="line">		return &apos;member-center&apos;;</div><div class="line">	&#125;]);</div><div class="line">	Route::get(&apos;basic&apos;, function() &#123;</div><div class="line">		return &apos;member-basic&apos;;</div><div class="line">	&#125;)</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<ul>
+<li>路由中输出视图：需要在resources/views/welcome.blade.php中写视图，welcome会路由到此php文件，然后输出文件的视图。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Route::get(&apos;view&apos;, function() &#123;</div><div class="line">	return view(&apos;welcome&apos;);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<h3 id="控制器controller"><a href="#控制器controller" class="headerlink" title="控制器controller"></a>控制器controller</h3><ul>
+<li>位置：app/Http/Controllers</li>
+<li>写法：先新建一个文件MemberController.php</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace App\Http\Controllers;</div><div class="line"></div><div class="line">class MemberController extends Controller&#123;</div><div class="line">	public function info($id)&#123;</div><div class="line">		//return &apos;member-info&apos;;</div><div class="line">		return &apos;id&apos; . $id;</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>再在routes.php中添加route进行&lt;关联&gt;:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//使用MemberController下的info方法</div><div class="line">Route::get(&apos;member/info&apos;,&apos;MemberController@info&apos;);</div><div class="line">Route::get(&apos;member/info&apos;,[</div><div class="line">	&apos;uses&apos;=&gt; &apos;MemberController@info&apos;,</div><div class="line">	&apos;as&apos;=&gt;&apos;memberinfo&apos;	</div><div class="line">]);</div></pre></td></tr></table></figure>
+<p>传参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Route::get(&apos;member/info/&#123;id&#125;&apos;,[&apos;uses&apos;=&gt; &apos;MemberController@info&apos;,&apos;as&apos;=&gt;&apos;memberinfo&apos;]);</div></pre></td></tr></table></figure>
+<h3 id="视图view"><a href="#视图view" class="headerlink" title="视图view"></a>视图view</h3><ul>
+<li>在Controller里面使用如上所述的类</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">class MemberController extends Controller&#123;</div><div class="line">	public function info($id,$name)&#123;</div><div class="line">		return view(&apos;member/info&apos;,[</div><div class="line">			&apos;id&apos;=&gt;$id,</div><div class="line">			&apos;name&apos;=&gt;$name</div><div class="line">		]);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>在resources/views中新建目录member，新建文件info.blade.php,</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">info blade</div><div class="line">&#123;&#123;$id&#125;&#125; and &#123;&#123;$name&#125;&#125;</div></pre></td></tr></table></figure>
+<h3 id="模型model"><a href="#模型model" class="headerlink" title="模型model"></a>模型model</h3><ul>
+<li>新建模型：位置在app/下，比如User.php就是模型，我这里新建一个Member.php。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;?php</div><div class="line">namespace App;</div><div class="line"></div><div class="line">class Member extends Mode&#123;</div><div class="line">	public static function getMember()&#123;</div><div class="line">		return &apos;member name is sean&apos;;</div><div class="line">	&#125;</div><div class="line">&#125;</div><div class="line">?&gt;</div></pre></td></tr></table></figure>
+<ul>
+<li>使用模型：在Controller里面调用，比如刚才写的MemberController类的info方法中加入如下代码即可调用。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">return Member::getMember();</div></pre></td></tr></table></figure>
+<h2 id="数据库操作"><a href="#数据库操作" class="headerlink" title="数据库操作"></a>数据库操作</h2><h3 id="DB-facade"><a href="#DB-facade" class="headerlink" title="DB facade"></a>DB facade</h3><ul>
+<li>相关文件及配置：config/database.php文件和.env文件</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">file: database.php</div><div class="line">&apos;default&apos; =&gt; env(&apos;DB_CONNECTION&apos;, &apos;mysql&apos;), //查看默认数据库是否正确</div><div class="line"></div><div class="line">	//看mysql的具体配置是否正确</div><div class="line">        &apos;mysql&apos; =&gt; [</div><div class="line">            &apos;driver&apos;    =&gt; &apos;mysql&apos;,</div><div class="line">            &apos;host&apos;      =&gt; env(&apos;DB_HOST&apos;, &apos;localhost&apos;),</div><div class="line">            &apos;database&apos;  =&gt; env(&apos;DB_DATABASE&apos;, &apos;forge&apos;),</div><div class="line">            &apos;username&apos;  =&gt; env(&apos;DB_USERNAME&apos;, &apos;forge&apos;),</div><div class="line">            &apos;password&apos;  =&gt; env(&apos;DB_PASSWORD&apos;, &apos;&apos;),</div><div class="line">            &apos;charset&apos;   =&gt; &apos;utf8&apos;,</div><div class="line">            &apos;collation&apos; =&gt; &apos;utf8_unicode_ci&apos;,</div><div class="line">            &apos;prefix&apos;    =&gt; &apos;&apos;,</div><div class="line">            &apos;strict&apos;    =&gt; false,</div><div class="line">            &apos;engine&apos;    =&gt; null,</div><div class="line">        ],</div><div class="line">```</div></pre></td></tr></table></figure>
+<p>file: .env文件<br>修改配置<br>DB_HOST=localhost<br>DB_DATABASE=test<br>DB_USERNAME=root<br>DB_PASSWORD=<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">* 操作：Controllers新建一个类似前面的类，在函数里面可以进行操作。</div></pre></td></tr></table></figure></p>
+<p>StudentController中</p>
+<p>&lt;?php<br>namespace App\Http\Controllers;</p>
+<p>use Illuminate\Support\Facades\DB;</p>
+<p>class StudentController extends Controller{<br>    public function test1(){</p>
+<pre><code>    //插入
+    /*$bool = DB::insert(&apos;insert into student(name,age) value(?,?)&apos;,
+            [&apos;imooc&apos;,19]);
+    var_dump($bool);*/
+
+    //修改
+    /*$num = DB::update(&apos;update student set age = ? where name = ?&apos;,
+            [20,&apos;sean&apos;]); //返回成功的行数
+    var_dump($num); */
+
+    //查询
+    /*$students = DB::select(&apos;select * from student&apos;);
+    dd($students);*/
+
+    //删除
+    $num = DB::delete(&apos;delete from student where id &gt; ?&apos;,[&apos;1002&apos;]); //返回成功的行数
+    var_dump($num);
+}
+</code></pre><p>}<br>```</p>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+

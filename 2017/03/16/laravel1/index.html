@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+  <!-- Html Head Tag-->
+  <head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="沙晓强">
+  <!-- Open Graph Data -->
+  <meta property="og:title" content="laravel学习基础（二）"/>
+  <meta property="og:description" content="blog" />
+  <meta property="og:site_name" content="sky_bird&#39;s blog"/>
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="http://shaxiaoqiang.comundefined"/>
+  
+    <link rel="alternate" href="/atom.xml" title="sky_bird&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+
+  <!-- Site Title -->
+  <title>sky_bird's blog</title>
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Custom CSS -->
+  
+  <link rel="stylesheet" href="/css/style.light.css">
+
+  <!-- Google Analytics -->
+  
+
+</head>
+
+  <body>
+    <!-- Page Header -->
+
+
+<header class="site-header header-background" style="background-image: url(/img/default-banner-dark.jpg)">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="page-title with-background-image">
+          <p class="title">laravel学习基础（二）</p>
+          <p class="subtitle"></p>
+        </div>
+        <div class="site-menu with-background-image">
+          <ul>
+            
+              <li>
+                <a href="/">
+                  
+                  Home
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="/archives">
+                  
+                  Archives
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="https://github.com/levblanc">
+                  
+                  Github
+                  
+                </a>
+              </li>
+            
+              <li>
+                <a href="mailto:levblanc@163.com">
+                  
+                  Email
+                  
+                </a>
+              </li>
+            
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<article>
+  <div class="container typo">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="post-info text-muted">
+          
+            <!-- Author -->
+            <span class="author info">By 沙晓强</span>
+          
+          <!-- Date -->
+          <span class="date-time info">On
+            <span class="date">2017-03-16</span>
+            <span class="time">03:40:51</span>
+          </span>
+          
+        </div>
+        <!-- Tags -->
+        
+        <!-- Post Main Content -->
+        <div class="post-content">
+          <h2 id="Blade模板引擎"><a href="#Blade模板引擎" class="headerlink" title="Blade模板引擎"></a>Blade模板引擎</h2><h3 id="模板继承"><a href="#模板继承" class="headerlink" title="模板继承"></a>模板继承</h3><p>首先在Controller里面添加相应的方法并且<code>return view(student/section)</code>，在routes里面添加路由。<br>然后在views中新建student文件夹和section.blade.php文件，在view中还要新建一个模板layout.blade.php文件，用于被section继承。<br>layout.blade.php代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">&lt;body&gt;</div><div class="line">    &lt;div class=&quot;header&quot;&gt;</div><div class="line">        @section(&apos;header&apos;)</div><div class="line">        头部</div><div class="line">        @show</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div class=&quot;main&quot;&gt;</div><div class="line">        &lt;div class=&quot;sidebar&quot;&gt;</div><div class="line">            @section(&apos;sidebar&apos;)</div><div class="line">            侧边栏</div><div class="line">            @show</div><div class="line">        &lt;/div&gt;</div><div class="line"></div><div class="line">        &lt;div class=&quot;content&quot;&gt;</div><div class="line">            @yield(&apos;content&apos;,&apos;主要内容区域&apos;);</div><div class="line">        &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div class=&quot;footer&quot;&gt;</div><div class="line">        @section(&apos;footer&apos;)</div><div class="line">         底部</div><div class="line">        @show</div><div class="line">    &lt;/div&gt;</div><div class="line">&lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<p>section.blade.php代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">模板继承 用@extends(&apos;模板名&apos;)</div><div class="line">模板重写 用@section(&apos;重写部分的名字&apos;)</div><div class="line">               重写的内容</div><div class="line">           @stop</div><div class="line">对@yield的模板重写也是一样的用法。</div></pre></td></tr></table></figure>
+<h3 id="基础语法及include引用子视图使用"><a href="#基础语法及include引用子视图使用" class="headerlink" title="基础语法及include引用子视图使用"></a>基础语法及include引用子视图使用</h3><p>在section.blade.php中可以使用如下基础语法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&lt;!-- 1、模板中输出PHP变量，在Controller中return view(&apos;section&apos;, [&apos;name&apos; =&gt; $name]) --&gt;</div><div class="line">&lt;p&gt;&#123;&#123; $name &#125;&#125;&lt;/p&gt;</div><div class="line"></div><div class="line">&lt;!-- 2、模板中调用PHP代码--&gt;</div><div class="line">&lt;p&gt;&#123;&#123; date(&apos;Y-m-d H:i:s&apos;, time()) &#125;&#125; &lt;/p&gt;</div><div class="line">&lt;p&gt;&#123;&#123; isset($name) ? $name : &apos;default&apos; &#125;&#125;&lt;/p&gt;</div><div class="line">&lt;p&gt;&#123;&#123; $name or &apos;default&apos;&#125;&#125;&lt;/p&gt;</div><div class="line"></div><div class="line">&lt;!-- 3、原样输出 --&gt;</div><div class="line">&lt;p&gt;@&#123;&#123; $name &#125;&#125;&lt;/p&gt;</div><div class="line"></div><div class="line">&#123;&#123;-- 4、模板中注释，在浏览器中查看源码的时候看不到 --&#125;&#125;</div><div class="line"></div><div class="line">&#123;&#123;-- 5、引入子视图 include --&#125;&#125;</div><div class="line">@include(&apos;student.common1&apos;, [&apos;message&apos; =&gt; &apos;something&apos;])</div></pre></td></tr></table></figure>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><p>讲了if|unless|for|foreach|forelse的语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">@section(&apos;footer&apos;)</div><div class="line">	&#123;&#123;-- 流程控制 --&#125;&#125;</div><div class="line">	&#123;&#123;-- if ifelse else endif --&#125;&#125;</div><div class="line">&#123;&#123;-- 	@if($name == &apos;EnzoLiu&apos;)</div><div class="line">		i&apos;m EnzoLiu</div><div class="line">	@elseif($name == &apos;jeck&apos;)</div><div class="line">		i&apos;m jeck</div><div class="line">	@else</div><div class="line">		who am i?</div><div class="line">	@endif --&#125;&#125;</div><div class="line"></div><div class="line">	&#123;&#123;-- unless(if反向) --&#125;&#125;</div><div class="line">&#123;&#123;-- 	@unless($name != &apos;EnzoLiu&apos;)</div><div class="line">		我是EnzoLiu</div><div class="line">	@else</div><div class="line">		我不是EnzoLiu</div><div class="line">	@endunless --&#125;&#125;</div><div class="line"></div><div class="line">	&#123;&#123;-- for 循环 --&#125;&#125;</div><div class="line">&#123;&#123;-- 	@for($i=0; $i&lt;10; $i++)</div><div class="line">		&#123;&#123; $i &#125;&#125;</div><div class="line">	@endfor --&#125;&#125;</div><div class="line"></div><div class="line">	&#123;&#123;-- foreach 数组遍历 --&#125;&#125;</div><div class="line">&#123;&#123;-- 	@foreach($res as $key =&gt; $value)</div><div class="line">		&#123;&#123; $key &#125;&#125;&lt;br&gt;&#123;&#123; $value &#125;&#125;</div><div class="line">	@endforeach --&#125;&#125;</div><div class="line"></div><div class="line">	&#123;&#123;-- forelse 循环(特殊) --&#125;&#125;</div><div class="line">	&#123;&#123;-- 释: $res如果有值则运行 $obj-&gt;name 代码块, 如果为空则显示 null --&#125;&#125;</div><div class="line">&#123;&#123;-- 	@forelse($res as $obj)</div><div class="line">		&#123;&#123; $obj-&gt;name &#125;&#125;&lt;br&gt;</div><div class="line">	@empty</div><div class="line">		null</div><div class="line">	@endforelse --&#125;&#125;</div><div class="line">@stop</div></pre></td></tr></table></figure>
+<h3 id="模板中的URL"><a href="#模板中的URL" class="headerlink" title="模板中的URL"></a>模板中的URL</h3><p>生成URL：三种方法，一般用url和route两个函数。<br>首先在routes中添加一条路由，并且指定别名。<br><code>Route::any(&#39;url&#39;, [&#39;as&#39; =&gt; &#39;url, &#39;uses&#39; =&gt; &#39;StudentController@urlTest&#39;]);</code></p>
+<pre><code>&lt;!-- url()通过路由的名称生成url --&gt;
+&lt;a href=&quot;{{ url('url') }}&quot;&gt;url()&lt;/a&gt;
+&lt;br&gt;
+&lt;!-- action()通过制定控制器及方法名生成url --&gt;
+&lt;a href=&quot;{{ action('StudentController@urlTest') }}&quot;&gt;action()&lt;/a&gt;
+&lt;br&gt;
+&lt;!-- route()通过路由的别名生成url --&gt;
+&lt;a href=&quot;{{ route('url') }}&quot;&gt;route()&lt;/a&gt;
+</code></pre><h2 id="基础总结"><a href="#基础总结" class="headerlink" title="基础总结"></a>基础总结</h2><ul>
+<li>安装laravel</li>
+<li>核心目录文件的介绍</li>
+<li>路由的用法</li>
+<li>laravel中的MVC</li>
+<li>数据库的三种操作方式</li>
+<li>blade模板引擎的用法</li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</article>
+
+
+
+    <!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <p class="copyright text-muted">
+          Theme By <a target="_blank" href="https://github.com/levblanc">Levblanc.</a>
+          Inspired By <a target="_blank" href="https://github.com/klugjo/hexo-theme-clean-blog">Clean Blog.</a>
+        <p class="copyright text-muted">
+          Powered By <a target="_blank" href="https://hexo.io/">Hexo.</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+    <!-- After Footer Scripts -->
+<script src="/js/highlight.pack.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function(event) {
+    var codeBlocks = Array.prototype.slice.call(document.getElementsByTagName('pre'))
+    codeBlocks.forEach(function(block, index) {
+      hljs.highlightBlock(block);
+    });
+  });
+</script>
+
+  </body>
+</html>
+
